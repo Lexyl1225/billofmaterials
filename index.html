@@ -1450,7 +1450,7 @@
         });
 
         // Unit options for dropdown
-        const unitOptions = ['pcs', 'pc', 'set', 'sets', 'gal', 'roll', 'assy', 'kgs', 'liter', 'box'];
+        const unitOptions = ['pcs', 'pc', 'set', 'sets', 'gal', 'roll', 'assy', 'kgs', 'liter', 'box','mts','sht',];
 
         // Function to show unit dropdown
         function showUnitDropdown(input) {
@@ -1555,6 +1555,7 @@
             if (tableId === 'panelTable') return 'panel';
             if (tableId === 'wiresTable') return 'wires';
             if (tableId === 'lightingFixturesTable') return 'lightingFixtures';
+            if (tableId ===  'auxlightingFixtureTable') return 'auxlightingFixture;
             if (tableId === 'outletsTable') return 'outlets';
             if (tableId === 'conduitTable') return 'conduit';
             if (tableId === 'miscTable') return 'misc';
@@ -1653,6 +1654,12 @@
                 tableId: 'lightingFixturesTable',
                 title: 'LIGHTING FIXTURES:',
                 dataSection: 'lightingFixtures'
+            },
+            auxlighting: {
+                id: 'auxlightingSection',
+                tableId: 'auxlightingFixturesTable',
+                title: 'AUXILIARY LIGHTING FIXTURES:',
+                dataSection: 'auxlightingFixtures'
             },
             outlets: {
                 id: 'outletsSection',
@@ -1768,6 +1775,7 @@
                     <div class="section-dropdown-item" onclick="addSectionByType('${newId}', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('${newId}', 'wires')">WIRES AND CABLES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('${newId}', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('${newId}', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('${newId}', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('${newId}', 'conduit')">CONDUIT AND FITTINGS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('${newId}', 'misc')">MISCELLANEOUS</div>
@@ -1827,3 +1835,4 @@
     </script>
 </body>
 </html>
+

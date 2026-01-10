@@ -486,6 +486,7 @@
                     <div class="section-dropdown-item" onclick="addSectionByType('panelSection', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('panelSection', 'wires')">WIRES AND CABLES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('panelSection', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('panelSection', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('panelSection', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('panelSection', 'conduit')">CONDUIT AND FITTINGS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('panelSection', 'misc')">MISCELLANEOUS</div>
@@ -534,6 +535,7 @@
                     <div class="section-dropdown-item" onclick="addSectionByType('wiresSection', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('wiresSection', 'wires')">WIRES AND CABLES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('wiresSection', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('wiresSection', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('wiresSection', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('wiresSection', 'conduit')">CONDUIT AND FITTINGS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('wiresSection', 'misc')">MISCELLANEOUS</div>
@@ -582,6 +584,7 @@
                     <div class="section-dropdown-item" onclick="addSectionByType('lightingSection', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('lightingSection', 'wires')">WIRES AND CABLES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('lightingSection', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('lightingSection', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('lightingSection', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('lightingSection', 'conduit')">CONDUIT AND FITTINGS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('lightingSection', 'misc')">MISCELLANEOUS</div>
@@ -589,7 +592,54 @@
             </span>
         </div>
         </div>
-
+    <!-- AuxiliaryLighting Fixtures -->
+        <div id="auxlightingSection" class="bom-section">
+        <div class="section-title">AUXILIARY LIGHTING FIXTURES:</div>
+        <table id="auxlightingFixturesTable">
+            <thead>
+                <tr>
+                    <th style="width: 45%;">ITEM DESCRIPTION</th>
+                    <th style="width: 10%;">UNIT</th>
+                    <th style="width: 10%;">QTY</th>
+                    <th style="width: 17%;">UNIT COST</th>
+                    <th style="width: 18%;">TOTAL COST</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><textarea class="description-input" data-section="auxlightingFixtures" rows="1">ESP32 Microcontroller with Headers</textarea></td>
+                    <td><input type="text" class="unit-input" value="box"></td>
+                    <td><input type="number" class="qty-input" value="1"></td>
+                    <td><input type="text" class="unit-cost-input" value="5,800.00"></td>
+                    <td class="text-right total-cost">5,800.00</td>
+                </tr>
+                <tr>
+                    <td><textarea class="description-input" data-section="auxlightingFixtures" rows="1">ESP32 Expansion Board</textarea></td>
+                    <td><input type="text" class="unit-input" value="box"></td>
+                    <td><input type="number" class="qty-input" value="1"></td>
+                    <td><input type="text" class="unit-cost-input" value="5,800.00"></td>
+                    <td class="text-right total-cost">5,800.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button class="add-row-btn" onclick="addRow('auxlightingFixturesTable')">+ Add Row</button>
+            <button class="remove-row-btn" onclick="removeLastRow('auxlightingFixturesTable')">- Remove Row</button>
+            <button class="delete-section-btn" onclick="deleteSection('auxlightingSection')">Delete Section</button>
+            <span class="section-btn-container">
+                <button class="add-section-btn" onclick="toggleSectionDropdown(this)">+ Add Section</button>
+                <div class="section-dropdown">
+                    <div class="section-dropdown-item" onclick="addSectionByType('auxlightingSection', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('auxlightingSection', 'wires')">WIRES AND CABLES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('auxlightingSection', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('auxlightingSection', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('auxlightingSection', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('auxlightingSection', 'conduit')">CONDUIT AND FITTINGS</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('auxlightingSection', 'misc')">MISCELLANEOUS</div>
+                </div>
+            </span>
+        </div>
+        </div>
         <!-- Convenience Outlet and Switches -->
         <div id="outletsSection" class="bom-section">
         <div class="section-title">CONVENIENCE OUTLET AND SWITCHES:</div>
@@ -612,14 +662,14 @@
                     <td class="text-right total-cost">8,400.00</td>
                 </tr>
                 <tr>
-                    <td><textarea class="description-input" data-section="outlets" rows="1">Utility Box</textarea></td>
+                    <td><textarea class="description-input" data-section="outlets" rows="1">Floor Outlet 2 GANG, ABSO BRAND</textarea></td>
                     <td><input type="text" class="unit-input" value="set"></td>
                     <td><input type="number" class="qty-input" value="35"></td>
                     <td><input type="text" class="unit-cost-input" value="30.00"></td>
                     <td class="text-right total-cost">1,050.00</td>
                 </tr>
                 <tr>
-                    <td><textarea class="description-input" data-section="outlets" rows="1">Junction Box</textarea></td>
+                    <td><textarea class="description-input" data-section="outlets" rows="1">GFCI 2 GANG OULET</textarea></td>
                     <td><input type="text" class="unit-input" value="pcs"></td>
                     <td><input type="number" class="qty-input" value="7"></td>
                     <td><input type="text" class="unit-cost-input" value="100.00"></td>
@@ -637,6 +687,7 @@
                     <div class="section-dropdown-item" onclick="addSectionByType('outletsSection', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('outletsSection', 'wires')">WIRES AND CABLES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('outletsSection', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('outletsSection', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('outletsSection', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('outletsSection', 'conduit')">CONDUIT AND FITTINGS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('outletsSection', 'misc')">MISCELLANEOUS</div>
@@ -692,6 +743,7 @@
                     <div class="section-dropdown-item" onclick="addSectionByType('conduitSection', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('conduitSection', 'wires')">WIRES AND CABLES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('conduitSection', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('conduitSection', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('conduitSection', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('conduitSection', 'conduit')">CONDUIT AND FITTINGS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('conduitSection', 'misc')">MISCELLANEOUS</div>
@@ -775,6 +827,7 @@
                     <div class="section-dropdown-item" onclick="addSectionByType('miscSection', 'panel')">PANEL BOARD AND CIRCUIT BREAKERS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('miscSection', 'wires')">WIRES AND CABLES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('miscSection', 'lighting')">LIGHTING FIXTURES</div>
+                    <div class="section-dropdown-item" onclick="addSectionByType('miscSection', 'auxlighting')">AUXILIARY LIGHTING FIXTURES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('miscSection', 'outlets')">CONVENIENCE OUTLET AND SWITCHES</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('miscSection', 'conduit')">CONDUIT AND FITTINGS</div>
                     <div class="section-dropdown-item" onclick="addSectionByType('miscSection', 'misc')">MISCELLANEOUS</div>
@@ -798,7 +851,7 @@
                 <div class="signature-block">
                     <div class="signature-label">PREPARED BY:</div>
                     <div class="signature-line"></div>
-                    <div class="signature-name"><input type="text" name="prepared_name" value="Danilo Pascua" /></div>
+                    <div class="signature-name"><input type="text" name="prepared_name" value="Enter your Name" /></div>
                     <div class="signature-title"><input type="text" name="prepared_position" placeholder="Position" /></div>
                 </div>
                 <div class="signature-block">
@@ -827,13 +880,13 @@
                     <div class="signature-label">NOTED BY:</div>
                     <div class="signature-line"></div>
                     <div class="signature-name"><input type="text" name="noted_name" value="Alexander Fernandez" /></div>
-                    <div class="signature-title"><input type="text" name="noted_position" value="Elerctrical Engineer" /></div>
+                    <div class="signature-title"><input type="text" name="noted_position" value="Electrical Engineer" /></div>
                 </div>
                 <div class="signature-block">
                     <div class="signature-label">APPROVED BY:</div>
                     <div class="signature-line"></div>
                     <div class="signature-name"><input type="text" name="approved2_name" value="Ronal Lopez" /></div>
-                    <div class="signature-title"><input type="text" name="approved2_position" value="Devision HEAD" /></div>
+                    <div class="signature-title"><input type="text" name="approved2_position" value="Division HEAD" /></div>
                 </div>
             </div>
             <div class="signature-row">
@@ -1108,9 +1161,73 @@
                 'LED PANEL LIGHT 12W, 4000K, 900 LUMENS, PANASONIC',
                 'LED PANEL LIGHT 18W, 5000K, 1400 LUMENS, PANASONIC',
                 'LED FLOODLIGHT 30W, 5000K, 2400 LUMENS, PANASONIC',
-                'LED STREETLIGHT 50W, 5000K, 4000 LUMENS, PANASONIC'
+                'LED STREETLIGHT 50W, 5000K, 4000 LUMENS, PANASONIC',
+                'WT8A Led Fluorescent tube, Warm white, 16W, 1800lm',
+                'WT8A Led Fluorescent tube, Cool white, 16W, 1800lm',
+                'WT8A Led Fluorescent tube, Warm White, 8W, 900lm',
+                'WT8A Led Fluorescent tube, Daylight white, 8W, 900lm',
+                'GE UNO RECESSED DOWNLIGTH; UNOORR8D3CCT14W-BL; CCT:3000K/4000K/5000K; 14W; 1250 LUMENS -Warm White',
+                'GE UNO RECESSED DOWNLIGTH; UNOORR8D3CCT18W-BL; CCT:3000K/4000K/5000K; 18W; 1600 LUMENS -Warm White',
+                'GE UNO RECESSED DOWNLIGTH; UNOORR8D3CCT24W-BL; CCT:3000K/4000K/5000K; 24W; 2100 LUMENS -Warm White',
+                'SMD LED STRIPS 5050 Warm White, 220V 14.4W/METER, Eurolux Brand',
+                'SMD LED STRIPS 5050 Cool White, 220V 14.4W/METER, Eurolux Brand',
+                'SMD LED STRIPS 5050 Daylight, 220V 14.4W/METER, Eurolux Brand',
+                'SMD LED STRIPS 5050 Blue Light, 220V 14.4W/METER, Eurolux Brand',
+                'SMD LED STRIPS 5050 Red Light, 220V 14.4W/METER, Eurolux Brand',
+                'SMD LED STRIPS 5050 Green Light, 220V 14.4W/METER, Eurolux Brand',
+                'SMD LED 5050 End Cap (2 pcs), Eurolux Brand',
+                'SMD LED 5050 Connector (2pin), Eurolux Brand',
+                'SMD LED Connector Tube',
+                'SMD LED Power Cable (1.5m), Eurolux Brand',
+                '24" X 48" T8 Aluminum Louver Recessed Type w/ 2 x T8 Holder',
+                '24" X 48" T8 Aluminum Louver Surface Type w/ 2 x T8 Holder',
+                '12" X 48" T8 Aluminum Louver Recessed Type w/ 2 x T8 Holder',
+                '12" X 48" T8 Aluminum Louver Surface Type w/ 2 x T8 Holder'
+            ],
+            auxlightingFixtures: [
+                'SMD LED STRIPS WS2815 ADDRESSABLE RGB, 12V 100LEDS/METER',
+                'SMD LED STRIPS WS2815 ADDRESSABLE RGBW, 12V 100LEDS/METER',
+                '15mm x 20mm LED Aluminum Channel with White diffuser Cover, 1,5 meter',
+                'Control Box 60cm x 40cm x 20cm (For power supply and controller)',
+                'Arduino Nano ESP32S3 Micro Controller with Header',
+                'Arduino Nano ESP32S3 Micro Controller without Header',
+                'Arduino Nano ESP32S3 Expansion Board',
+                'Power Supply 220AC/12VDC (400watts)',
+                'Terminal Block for 1.25sq. mm wire (1n13bk)- DIN Rail Mount',
+                'DIN Rail (slotted type) 1 meter',
+                'Control Relay, 220VAC COIL, TeSysk-Model,(2NC/2NO), SCHNEIDER Brand',
+                'ANLY TIMER With socket Din Rail Mount, 220VAC, ON DELAY, 0.1s to 100 hours',
+                'Cable Spiral Wrap 8mm',
+                '16 mm diameter Push Button switch (NO) -Illuminated-Green',
+                '16 mm diameter Push Button switch (NC) -Illuminated-Red',
+                '16 mm diameter Pilot Light -Green',
+                '16 mm diameter Pilot Light -Red',  
+                'Blind Revit (1/8" x 1/2")',
+                '1.25 sq. mm TF Wire',
+                '#18 AWG Str. cu. TF Wire -Red',
+                '#18 AWG Str. cu. TF Wire -Black',
+                '#18 AWG Str. cu. TF Wire -White',
+                '#18 AWG Str. cu. TF Wire -Green',
+                '#18 AWG Str. cu. TF Wire -Blue',
+                'Shrinkable Tube 3/16" (4.8mm) - Black',
+                'Shrinkable Tube 1/8" (3.2mm) - Black',
+                'Heat Gun - 1500W',
+                'Soldering Iron - 60W',
+                'Solder Wire - 60/40 Rosin Core - 1/16" (1.6mm) - 1lb',
+                'Flux Paste - 50g',
+                'Desoldering Braid - 2.5mm x 1.5m'
             ],
             outlets: [
+                'GROUNDING UNIVERSAL OUTLET (WEG1181K)  w/ safety shutter 16A, 250V, WIDE SERIES, WITH PLATE AND COVER (WEG 68029W-1) PANASONIC Brand',
+                'GROUNDING UNIVERSAL OUTLET (WEG1181K)  w/ safety shutter 16A, 250V, WIDE SERIES, WITH PLATE AND COVER (WEG 68029W-1) PANASONIC Brand',
+                'GROUNDING UNIVERSAL OUTLET 16A, 250V, (WEG 15829), PANASONIC Brand',
+                '2-Gang GFCI Safety Outlet Ground Fault in Ivory Plate 20A (Designer Series) - DGFCI-201-PK, PANASONIC Brand',
+                '1 GANG 1-DEVICE ,1 WAY SWITCH (WEG 5151 - 51K) WITH PLATE AND COVER (WEG6801W-1) PANASONIC Brand',
+                '1 GANG 2-DEVICE ,1 WAY SWITCH (WEG 5151 - 51K) WITH PLATE AND COVER (WEG6802W-1) PANASONIC Brand',
+                '1 GANG 3-DEVICE ,1 WAY SWITCH (WEG 5151 - 51K) WITH PLATE AND COVER (WEG6803W-1) PANASONIC Brand',
+                '1 GANG 1-DEVICE ,LAN OUTLET CAT6/CAT5 (WEG24886) WITH PLATE AND COVER (WEG2488601W-1) PANASONIC Brand',
+                '1 GANG 2-DEVICE ,LAN OUTLET CAT6/CAT5 (WEG24886) WITH PLATE AND COVER (WEG2488602W-1) PANASONIC Brand',
+                '1 GANG 3-DEVICE ,LAN OUTLET CAT6/CAT5 (WEG24886) WITH PLATE AND COVER (WEG2488603W-1) PANASONIC Brand',
                 'GROUNDING DUPLEX UNIVERSAL OUTLET w/ safety shutter, 250V VAC, 15AMP, PANASONIC BRAND',
                 'GROUNDING DUPLEX UNIVERSAL OUTLET w/ safety shutter 16A, 250V, WIDE SERIES, (WEG 15829) PANASONIC Brand',
                 'GROUNDING DUPLEX UNIVERSAL OUTLET w/ safety shutter, 250V VAC, 20AMP, PANASONIC BRAND',
@@ -1187,19 +1304,83 @@
 
 
             misc: [
+                'CAT6 UTP CABLE BELDEN BRAND-SHIELDED, 300 METERS/BOX',
+                'SMOKE DETECTOR, PHOTOELECTRIC TYPE, PANASONIC BRAND',
+                'HEAT DETECTOR, RATE OF RISE TYPE, PANASONIC BRAND',
+                'MANUAL PULL STATION, PANASONIC BRAND',
+                'FIRE ALARM SOUNDERS, PANASONIC BRAND',
+                'SMOKE DETECTOR - NOTIFIER BRAND',
+                'HEAT DETECTOR - NOTIFIER BRAND',
+                'MANUAL PULL STATION - NOTIFIER BRAND',
+                'FIRE ALARM SOUNDERS - NOTIFIER BRAND',
+                '1.25 SQ. MM TF Wire - Red',
+                '1.25 SQ. MM TF Wire - Black',
+                '24-hr TIMER SWITCH, PANASONIC BRAND',
+                'PHOTO CELL SWITCH, PANASONIC BRAND',
+                'Angle Bar 1 1/2" x 1 1/2" x 3/16" x 6m',
+                'Flat Bar 1/4" x 2" x 6m',
+                'Flat Bar 1/8" x 2" x 6m',
+                'Fullthread round Bar Bolt 3/8" with nut and washer',
+                'Anchor Bolt 3/8" x 6" with nut and washer',
+                'Anchor grip 3/8"',
+                'nut and washer 3/8"',
+                'Hex Bolt 3/8" with nut and washer',
+                'Plastic tox screw with screw #8',
+                'Terminal Lugs cu. 5.5 sq. mm.',
+                'Terminal Lugs cu. 8.0 sq. mm.',
+                'Terminal Lugs cu. 14.0 sq. mm.',
+                'Terminal Lugs cu. 22.0 sq. mm.',
+                'Terminal Lugs cu. 30.0 sq. mm.',
+                'Terminal Lugs cu. 38.0 sq. mm.',
+                'Terminal Lugs cu. 50.0 sq. mm.',
+                'Solderless cu. Connector 5.5 sq. mm.',
+                'Solderless cu. Connector 8.0 sq. mm.',
+                'Solderless cu. Connector 14.0 sq. mm.',
+                'Solderless cu. Connector 22.0 sq. mm.',
+                'Solderless cu. Connector 30.0 sq. mm.',
+                'Solderless cu. Connector 38.0 sq. mm.',
+                'Solderless cu. Connector 50.0 sq. mm.',
+                'Dymo Tagger Label Tape 3/8" - Black',
+                'Dymo Tagger',
+                'Rubber Tape - NITTO',
+                'Mica Tube 3/8" diameter',
+                'Mica Tube 1/2" diameter',
+                'Flexible metallic conduit 3/8"',
+                'Flexible metallic conduit 1/2"',
+                'Flexible Metallic connector 3/8"',
+                'Flexible Metallic connector 1/2"',
+                'Island or Turco - Rust Converter',
+                'G.I. Utility box #16(2"x4")',
+                'G.I. Utility box #16(2"x4") with cover',
+                'Junction Box with cover - hexagon',
+                'Junction Box with cover - square',
+                'Junction Box with cover - rectangular',
+                'G.I. Square Box #16 with cover',
+                'C-Purlins 2" x 4" x 20ft x 1.2mm',
+                'C-Purlins 2" x 6" x 20ft x 1.2mm',
+                'G.I. Wire #16',
+                'Electrical Tape - Big Roll - Armak Brand',
+                'Baby Roller 4" -HI TECH BRAND',
+                'Lacquer Thinner - KINGS BRAND',
+                'Epoxy Prime -Gray - Illinois Brand',
+                'Hardiflex 9mm x 4ft x 8ft',
+                'Hardiflex 12mm x 4ft x 8ft',
+                'Cable Tie 4" - Black',
+                'Cable Tie 8" - Black',
+                'Drill Bit for Metal 1/8"',
+                'Cutting disk 4"',
+                'PORTLAND Cement',
+                'Fine Sand (Cement Sand)',
+                'Fine White Sand (Plaster Sand)',
+                'Metal Black Screw 1" Pointed',
+                'Pull Box 12" x 12" x 5"',
+                'Wire Gutter 25cm x 30cm x 330cm',
+                'Cable Clamp 3/8" (Metallic)',
                 'Electrical Tape',
                 'Rubber Molding',
                 'Duct Tape',
                 'Warning Tape',
                 'Cloth Tape',
-                'Flexible Metallic conduit 3/8"',
-                'Flexible Metallic conduit 1/2"',
-                'Flexible Metallic connector 3/8"',
-                'Flexible Metallic connector 1/2"',
-                'Electrical Fixtures',
-                'Cable Ties',
-                'Conduit Pipe 1/2"',
-                'Conduit Pipe 3/4"'
             ]
         };
 

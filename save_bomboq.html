@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved BOM & BOQ Documents</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+
+        .documents-section {
+            margin-top: 20px;
+        }
+
+        .section-title {
+            background-color: #2196F3;
+            color: white;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        table thead {
+            background-color: #f5f5f5;
+        }
+
+        table th {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+            font-weight: bold;
+            color: #333;
+            font-size: 13px;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-btn {
+            padding: 8px 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background-color: #da190b;
+        }
+
+        .print-btn {
+            padding: 8px 16px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .print-btn:hover {
+            background-color: #1976D2;
+        }
+
+        .no-documents {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .document-date {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .button-cell {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        /* Modal Styles for View */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .modal-header {
+            background-color: #2196F3;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .modal-body {
+            padding: 20px;
+            height: calc(100% - 120px);
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .modal-footer {
+            background-color: #f5f5f5;
+            padding: 15px 20px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .modal-close-btn {
+            background-color: #666;
+            color: white;
+        }
+
+        .modal-close-btn:hover {
+            background-color: #555;
+        }
+
+        .modal-pdf-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .modal-pdf-btn:hover {
+            background-color: #da190b;
+        }
+
+        .modal-print-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .modal-print-btn:hover {
+            background-color: #1976D2;
+        }
+
+        .document-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media print {
+            .back-button, .view-btn, .delete-btn, .modal-footer, .modal-header {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="button-container">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <button class="back-button" onclick="backToHome()">Back to Home</button>
+        </div>
+
+        <div class="header">
+            <h1>Saved Documents</h1>
+            <p>View and manage your saved BOM and BOQ documents</p>
+        </div>
+
+        <!-- BOM Documents Section -->
+        <div class="documents-section">
+            <div class="section-title">Bill of Materials (BOM)</div>
+            <table id="bomTable">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Document Name</th>
+                        <th style="width: 30%;">Reference No</th>
+                        <th style="width: 20%;">Date Created</th>
+                        <th style="width: 10%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="bomBody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- BOQ Documents Section -->
+        <div class="documents-section">
+            <div class="section-title">Bill of Quantities (BOQ)</div>
+            <table id="boqTable">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Document Name</th>
+                        <th style="width: 30%;">Reference No</th>
+                        <th style="width: 20%;">Date Created</th>
+                        <th style="width: 10%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="boqBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Document Viewer Modal -->
+    <div id="viewerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Document Viewer</h2>
+                <span id="closeModalBtn" style="cursor: pointer; font-size: 28px; font-weight: bold;">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="documentContent" class="document-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-print-btn" onclick="printDocument()">Print</button>
+                <button class="modal-btn modal-pdf-btn" onclick="downloadPDF()">Download PDF</button>
+                <button class="modal-btn modal-close-btn" onclick="closeViewer()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load documents from localStorage
+        let savedDocuments = {
+            bom: [],
+            boq: []
+        };
+
+        // Load documents on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadDocumentsFromStorage();
+            displayBOMDocuments();
+            displayBOQDocuments();
+        });
+
+        // Load documents from localStorage
+        function loadDocumentsFromStorage() {
+            // Load BOM documents
+            const bomDocs = localStorage.getItem('bomDocuments');
+            if (bomDocs) {
+                savedDocuments.bom = JSON.parse(bomDocs);
+            }
+
+            // Load BOQ documents
+            const boqDocs = localStorage.getItem('boqDocuments');
+            if (boqDocs) {
+                savedDocuments.boq = JSON.parse(boqDocs);
+            }
+        }
+
+        // Display BOM documents
+        function displayBOMDocuments() {
+            const tbody = document.getElementById('bomBody');
+            
+            if (savedDocuments.bom.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="no-documents">No saved BOM documents</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = savedDocuments.bom.map((doc, index) => `
+                <tr>
+                    <td><strong>${doc.name}</strong></td>
+                    <td>${doc.refNo}</td>
+                    <td><span class="document-date">${doc.date}</span></td>
+                    <td>
+                        <div class="button-cell">
+                            <button class="view-btn" data-type="bom" data-index="${index}">View</button>
+                            <button class="print-btn" data-type="bom" data-index="${index}">Print</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Add event listeners to BOM view buttons
+            document.querySelectorAll('#bomBody .view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    viewSavedDocument(savedDocuments.bom[index]);
+                });
+            });
+            
+            // Add event listeners to BOM print buttons
+            document.querySelectorAll('#bomBody .print-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    printSavedDocument(savedDocuments.bom[index]);
+                });
+            });
+        }
+
+        // Display BOQ documents
+        function displayBOQDocuments() {
+            const tbody = document.getElementById('boqBody');
+            
+            if (savedDocuments.boq.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="no-documents">No saved BOQ documents</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = savedDocuments.boq.map((doc, index) => `
+                <tr>
+                    <td><strong>${doc.name}</strong></td>
+                    <td>${doc.refNo}</td>
+                    <td><span class="document-date">${doc.date}</span></td>
+                    <td>
+                        <div class="button-cell">
+                            <button class="view-btn" data-type="boq" data-index="${index}">View</button>
+                            <button class="print-btn" data-type="boq" data-index="${index}">Print</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Add event listeners to BOQ view buttons
+            document.querySelectorAll('#boqBody .view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    viewSavedDocument(savedDocuments.boq[index]);
+                });
+            });
+            
+            // Add event listeners to BOQ print buttons
+            document.querySelectorAll('#boqBody .print-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    printSavedDocument(savedDocuments.boq[index]);
+                });
+            });
+        }
+
+        // Print saved document directly
+        function printSavedDocument(doc) {
+            const printWindow = window.open('', '', 'width=1000,height=800');
+            printWindow.document.write('<!DOCTYPE html>');
+            printWindow.document.write('<html>');
+            printWindow.document.write('<head>');
+            printWindow.document.write('<meta charset="UTF-8">');
+            printWindow.document.write('<title>' + doc.name + '</title>');
+            printWindow.document.write('<style>');
+            printWindow.document.write('body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; background-color: white; }');
+            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background-color: white; }');
+            printWindow.document.write('table th, table td { border: 1px solid #000; padding: 5px 8px; text-align: left; }');
+            printWindow.document.write('table th { background-color: #FFFF00; font-weight: bold; text-align: center; }');
+            printWindow.document.write('.total-row { background-color: #FFFF00; font-weight: bold; }');
+            printWindow.document.write('h1 { color: #333; margin-bottom: 10px; font-size: 16px; text-align: center; }');
+            printWindow.document.write('.header-info { background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; margin-bottom: 20px; }');
+            printWindow.document.write('.doc-title { font-size: 14px; font-weight: bold; }');
+            printWindow.document.write('.doc-ref { font-size: 12px; color: #666; }');
+            printWindow.document.write('.button-group { margin-bottom: 15px; text-align: center; }');
+            printWindow.document.write('.print-button { background-color: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; font-size: 12px; }');
+            printWindow.document.write('.print-button:hover { background-color: #1976D2; }');
+            printWindow.document.write('.close-button { background-color: #666; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }');
+            printWindow.document.write('.close-button:hover { background-color: #555; }');
+            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; font-size: 10px; }');
+            printWindow.document.write('.signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }');
+            printWindow.document.write('.signature-block { text-align: center; }');
+            printWindow.document.write('.signature-label { font-weight: bold; margin-bottom: 5px; }');
+            printWindow.document.write('.signature-line { border-top: 1px solid #000; margin-top: 40px; padding-top: 3px; }');
+            printWindow.document.write('.signature-name { font-weight: bold; margin-top: 3px; }');
+            printWindow.document.write('.signature-title { font-size: 9px; margin-top: 2px; }');
+            printWindow.document.write('input[type="text"], input[type="number"], textarea { border: none; background: transparent; font-family: Arial, sans-serif; font-size: 11px; padding: 2px; margin: 0; }');
+            printWindow.document.write('@media print { .button-group { display: none; } }');
+            printWindow.document.write('</style>');
+            printWindow.document.write('</head>');
+            printWindow.document.write('<body>');
+            
+            // Add header with document info and project information
+            printWindow.document.write('<div class="header-info">');
+            printWindow.document.write('<div class="doc-title">' + doc.name + '</div>');
+            if (doc.department || doc.projectName || doc.location || doc.floorArea || doc.dateValue) {
+                printWindow.document.write('<div style="margin-top: 10px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 11px;">');
+                if (doc.department) printWindow.document.write('<div><strong>Department:</strong> ' + doc.department + '</div>');
+                if (doc.projectName) printWindow.document.write('<div><strong>Project Name:</strong> ' + doc.projectName + '</div>');
+                if (doc.location) printWindow.document.write('<div><strong>Location:</strong> ' + doc.location + '</div>');
+                if (doc.floorArea) printWindow.document.write('<div><strong>Total Floor Area:</strong> ' + doc.floorArea + '</div>');
+                if (doc.dateValue) printWindow.document.write('<div><strong>Date:</strong> ' + doc.dateValue + '</div>');
+                printWindow.document.write('</div>');
+            }
+            printWindow.document.write('<div class="doc-ref">Reference: ' + doc.refNo + '</div>');
+            printWindow.document.write('<div class="doc-ref">Saved: ' + doc.date + '</div>');
+            printWindow.document.write('</div>');
+            
+            // Add action buttons
+            printWindow.document.write('<div class="button-group">');
+            printWindow.document.write('<button class="print-button" onclick="window.print()">Print Document</button>');
+            printWindow.document.write('<button class="close-button" onclick="window.close()">Close</button>');
+            printWindow.document.write('</div>');
+            
+            // Add document content
+            if (doc.htmlContent) {
+                // Remove duplicate project-info section if it exists
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = doc.htmlContent;
+                const projectInfoElements = tempDiv.querySelectorAll('.project-info');
+                projectInfoElements.forEach(el => el.remove());
+                printWindow.document.write(tempDiv.innerHTML);
+            } else {
+                printWindow.document.write('<p>No content available for this document.</p>');
+            }
+            
+            printWindow.document.write('</body>');
+            printWindow.document.write('</html>');
+            printWindow.document.close();
+            printWindow.focus();
+            
+            // Automatically trigger print dialog
+            setTimeout(function() {
+                printWindow.print();
+            }, 500);
+        }
+
+        // Show saved document in print format on new page
+        function viewSavedDocument(doc) {
+            // Create a new window with the document in print format
+            const printWindow = window.open('', '', 'width=1000,height=800');
+            printWindow.document.write('<!DOCTYPE html>');
+            printWindow.document.write('<html>');
+            printWindow.document.write('<head>');
+            printWindow.document.write('<meta charset="UTF-8">');
+            printWindow.document.write('<title>' + doc.name + '</title>');
+            printWindow.document.write('<style>');
+            printWindow.document.write('body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; background-color: #f5f5f5; }');
+            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background-color: white; }');
+            printWindow.document.write('table th, table td { border: 1px solid #000; padding: 5px 8px; text-align: left; }');
+            printWindow.document.write('table th { background-color: #FFFF00; font-weight: bold; text-align: center; }');
+            printWindow.document.write('.total-row { background-color: #FFFF00; font-weight: bold; }');
+            printWindow.document.write('h1 { color: #333; margin-bottom: 10px; font-size: 16px; text-align: center; }');
+            printWindow.document.write('.header-info { background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; margin-bottom: 20px; }');
+            printWindow.document.write('.doc-title { font-size: 14px; font-weight: bold; }');
+            printWindow.document.write('.doc-ref { font-size: 12px; color: #666; }');
+            printWindow.document.write('.print-button { background-color: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; font-size: 12px; }');
+            printWindow.document.write('.print-button:hover { background-color: #1976D2; }');
+            printWindow.document.write('.close-button { background-color: #666; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }');
+            printWindow.document.write('.close-button:hover { background-color: #555; }');
+            printWindow.document.write('.button-group { margin-bottom: 15px; text-align: center; }');
+            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; font-size: 10px; }');
+            printWindow.document.write('.signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }');
+            printWindow.document.write('.signature-block { text-align: center; }');
+            printWindow.document.write('.signature-label { font-weight: bold; margin-bottom: 5px; }');
+            printWindow.document.write('.signature-line { border-top: 1px solid #000; margin-top: 40px; padding-top: 3px; }');
+            printWindow.document.write('.signature-name { font-weight: bold; margin-top: 3px; }');
+            printWindow.document.write('.signature-title { font-size: 9px; margin-top: 2px; }');
+            printWindow.document.write('input[type="text"], input[type="number"], textarea { border: none; background: transparent; font-family: Arial, sans-serif; font-size: 11px; padding: 2px; margin: 0; }');
+            printWindow.document.write('@media print { .button-group { display: none; } }');
+            printWindow.document.write('</style>');
+            printWindow.document.write('</head>');
+            printWindow.document.write('<body>');
+            
+            // Add header with document info
+            printWindow.document.write('<div class="header-info">');
+            printWindow.document.write('<div class="doc-title">' + doc.name + '</div>');
+            printWindow.document.write('<div class="doc-ref">Reference: ' + doc.refNo + '</div>');
+            printWindow.document.write('<div class="doc-ref">Date: ' + doc.date + '</div>');
+            printWindow.document.write('</div>');
+            
+            // Add action buttons
+            printWindow.document.write('<div class="button-group">');
+            printWindow.document.write('<button class="print-button" onclick="window.print()">Print Document</button>');
+            printWindow.document.write('<button class="close-button" onclick="window.close()">Close</button>');
+            printWindow.document.write('</div>');
+            
+            // Add document content
+            if (doc.htmlContent) {
+                // Remove duplicate project-info section if it exists
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = doc.htmlContent;
+                const projectInfoElements = tempDiv.querySelectorAll('.project-info');
+                projectInfoElements.forEach(el => el.remove());
+                printWindow.document.write(tempDiv.innerHTML);
+            } else {
+                printWindow.document.write('<p>No content available for this document.</p>');
+            }
+            
+            printWindow.document.write('</body>');
+            printWindow.document.write('</html>');
+            printWindow.document.close();
+            printWindow.focus();
+        }
+
+        // Close viewer modal
+        function closeViewer() {
+            const modal = document.getElementById('viewerModal');
+            modal.classList.remove('show');
+        }
+
+        // Print document
+        function printDocument() {
+            const modalBody = document.querySelector('.modal-body');
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Document</title>');
+            printWindow.document.write('<style>');
+            printWindow.document.write('body { font-family: Arial, sans-serif; font-size: 11px; }');
+            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }');
+            printWindow.document.write('table th, table td { border: 1px solid #000; padding: 5px 8px; text-align: left; }');
+            printWindow.document.write('table th { background-color: #FFFF00; font-weight: bold; text-align: center; }');
+            printWindow.document.write('</style></head><body>');
+            printWindow.document.write(document.getElementById('documentContent').innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+        }
+
+        // Download PDF
+        function downloadPDF() {
+            const element = document.getElementById('documentContent');
+            const docName = window.currentDocument ? window.currentDocument.name : 'document';
+            
+            // Create a simple HTML to PDF conversion using browser's print to PDF
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>' + docName + '</title>');
+            printWindow.document.write('<style>');
+            printWindow.document.write('body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; }');
+            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }');
+            printWindow.document.write('table th, table td { border: 1px solid #000; padding: 5px 8px; text-align: left; }');
+            printWindow.document.write('table th { background-color: #FFFF00; font-weight: bold; text-align: center; }');
+            printWindow.document.write('.total-row { background-color: #FFFF00; font-weight: bold; }');
+            printWindow.document.write('</style></head><body>');
+            printWindow.document.write(element.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            
+            // Trigger print dialog which allows saving as PDF
+            setTimeout(function() {
+                printWindow.focus();
+                printWindow.print();
+            }, 250);
+        }
+
+        // Go back to previous page
+        function goBack() {
+            window.history.back();
+        }
+
+        function backToHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Close modal when clicking the X button
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.getElementById('closeModalBtn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeViewer);
+            }
+            
+            // Close modal when clicking outside of it
+            const modal = document.getElementById('viewerModal');
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeViewer();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

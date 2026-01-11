@@ -38,6 +38,27 @@
             background-color: #45a049;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
+        .save-btn {
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            top: 75px;
+            right: 20px;
+            z-index: 9999;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
 
         .container {
             max-width: 900px;
@@ -83,6 +104,10 @@
             margin-bottom: 0;
             border: 1px solid #000;
             font-size: 11px;
+            color: #000;
+            opacity: 1;
+            visibility: visible;
+            text-decoration: none;
         }
 
         table {
@@ -121,16 +146,13 @@
         .signatures {
             margin-top: 30px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
             font-size: 10px;
         }
 
         .signature-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
+            display: contents;
         }
 
         .signature-block {
@@ -182,7 +204,7 @@
             font-size: 11px;
             cursor: pointer;
             resize: none;
-            overflow: hidden;
+            overflow: hidden !important;
             min-height: 20px;
             line-height: 1.3;
             font-family: Arial, sans-serif;
@@ -384,14 +406,195 @@
             body {
                 background-color: white;
                 padding: 0;
+                margin: 0;
+                font-size: 10px;
+                line-height: 1.2;
             }
             .container {
                 box-shadow: none;
                 max-width: 100%;
-                padding: 20px;
+                padding: 15px;
+                margin: 0;
             }
             button, .button-group, .add-row-btn, .remove-row-btn, .delete-section-btn, .add-section-btn, .section-btn-container {
                 display: none !important;
+            }
+            
+            /* Hide date field border */
+            #dateField {
+                border: none !important;
+            }
+            
+            /* Professional print table styles */
+            table {
+                page-break-inside: avoid;
+                border-collapse: collapse;
+                margin-bottom: 8px;
+                font-size: 10px;
+            }
+            
+            table th, table td {
+                border: 0.5px solid #000;
+                padding: 4px 5px;
+                text-align: left;
+                vertical-align: middle;
+            }
+            
+            table th {
+                background-color: #FFFF00;
+                font-weight: bold;
+                padding: 5px;
+                text-align: center;
+            }
+            
+            /* ITEM DESCRIPTION column - make it wrap text properly */
+            table td:first-child,
+            table th:first-child {
+                width: 45%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                white-space: normal;
+                text-align: left;
+                vertical-align: top;
+            }
+            
+            table td:first-child textarea,
+            table td:first-child input {
+                width: 100%;
+                border: none;
+                background: transparent;
+                font-size: 9px;
+                line-height: 1.2;
+                padding: 2px;
+                margin: 0;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                white-space: normal;
+                resize: none;
+                overflow: hidden !important;
+            }
+            
+            /* Adjust other columns width for proper distribution */
+            table td:nth-child(2),
+            table th:nth-child(2) {
+                width: 10%;
+                text-align: center;
+            }
+            
+            table td:nth-child(3),
+            table th:nth-child(3) {
+                width: 8%;
+                text-align: center;
+            }
+            
+            table td:nth-child(4),
+            table th:nth-child(4) {
+                width: 12%;
+                text-align: center;
+            }
+            
+            table td:nth-child(5),
+            table th:nth-child(5) {
+                width: 25%;
+                text-align: right;
+                font-weight: bold;
+            }
+            
+            table td input,
+            table td textarea,
+            table td select {
+                border: none;
+                background: transparent;
+                font-size: 9px;
+                width: 100%;
+                height: auto;
+                padding: 1px 2px;
+                margin: 0;
+                resize: none;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                overflow: hidden !important;
+            }
+            
+            /* Total rows styling */
+            .total-row {
+                background-color: #FFFF00;
+                font-weight: bold;
+            }
+            
+            .total-row td {
+                background-color: #FFFF00;
+                border: 0.5px solid #000;
+                padding: 4px 5px;
+            }
+            
+            /* Section titles */
+            .section-title {
+                background-color: #FFFF00 !important;
+                font-weight: bold !important;
+                padding: 4px 8px;
+                margin-top: 6px;
+                margin-bottom: 2px;
+                border: 0.5px solid #000;
+                page-break-after: avoid;
+                font-size: 10px;
+                color: #000 !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            
+            /* Header section */
+            .header {
+                margin-bottom: 10px;
+                page-break-after: avoid;
+            }
+            
+            .header h2 {
+                margin: 5px 0;
+                font-size: 14px;
+                font-weight: bold;
+            }
+            
+            .header hr {
+                border: 1px solid #ffd102;
+                margin: 5px auto;
+            }
+            
+            /* Project info */
+            .project-info {
+                display: block;
+                margin-bottom: 10px;
+                page-break-after: avoid;
+                font-size: 10px;
+            }
+            
+            .project-info div {
+                margin: 2px 0;
+            }
+            
+            /* Signatures */
+            .signatures {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 12px;
+                margin-top: 20px;
+                page-break-inside: avoid;
+            }
+            
+            .signature-row {
+                display: contents;
+            }
+            
+            .signature-block {
+                page-break-inside: avoid;
+                text-align: center;
+                font-size: 8px;
+            }
+            
+            .signature-line {
+                border-top: 1px solid #000;
+                margin-top: 35px;
+                margin-bottom: 3px;
             }
         }
     </style>
@@ -415,11 +618,11 @@
         <div class="project-info">
             <div class="info-group">
                 <label>Department:</label>
-                <input type="text" id="projectName" placeholder="Enter Department Name">
+                <input type="text" id="projectDepartment" placeholder="Enter Department Name">
             </div>
             <div class="info-group">
                 <label>Project Name:</label>
-                <input type="text" id="projectName" placeholder="Enter project name">
+                <input type="text" id="projectNameField" placeholder="Enter project name">
             </div>
             <div class="info-group">
                 <label>Location:</label>
@@ -427,7 +630,7 @@
             </div>
             <div class="info-group">
                 <label>Total Floor Area:</label>
-                <input type="text" id="projectName" placeholder="Enter total floor area">
+                <input type="text" id="projectFloorArea" placeholder="Enter total floor area">
             </div>
             <div class="info-group">
                 <label>Date:</label>
@@ -861,7 +1064,7 @@
         <table style="margin-top: 15px;">
             <tr class="total-row">
                 <td colspan="3" style="text-align: center; font-weight: bold;">TOTAL ESTIMATED COSTS:</td>
-                <td style="text-align: center; font-weight: bold;">TOTAL</td>
+              
                 <td id="grandTotal" style="text-align: right; font-weight: bold;">0.00</td>
             </tr>
         </table>
@@ -898,7 +1101,7 @@
             </div>
             <div class="signature-row">
                 <div class="signature-block">
-                    <div class="signature-label">NOTED BY:</div>
+                    <div class="signature-label">NOTED AND APPROVED BY:</div>
                     <div class="signature-line"></div>
                     <div class="signature-name"><input type="text" name="noted_name" value="Alexander Fernandez" /></div>
                     <div class="signature-title"><input type="text" name="noted_position" value="Electrical Engineer" /></div>
@@ -932,6 +1135,7 @@
             <button class="print-btn" onclick="window.print()">Print</button>
             <button class="clear-btn" onclick="clearForm()">Clear Form</button>
             <button class="boq-btn" onclick="loadPage('bom_labor.html')">CREATE BOQ</button>
+            <button class="save-btn" onclick="openSavePage()">Save</button>
         </div>
     </div>
 
@@ -1472,7 +1676,7 @@
         });
 
         // Unit options for dropdown
-        const unitOptions = ['pcs', 'pc', 'set', 'sets', 'gal', 'roll', 'assy', 'kgs', 'liter', 'box'];
+        const unitOptions = ['pcs', 'pc', 'set', 'sets', 'gal', 'roll', 'assy', 'kgs', 'liter', 'box', 'pack', 'meter', 'meters', 'lot'];
 
         // Function to show unit dropdown
         function showUnitDropdown(input) {
@@ -1846,6 +2050,211 @@
                 generateReferenceNo();
             }
         }
+
+        // Save document function
+        function openSavePage() {
+            const documentName = prompt('Enter a name for this document:', '');
+            
+            if (documentName === null || documentName.trim() === '') {
+                return;
+            }
+
+            // Sync all textarea and input values to the DOM before capturing
+            document.querySelectorAll('textarea').forEach(ta => {
+                ta.textContent = ta.value;
+                ta.innerHTML = ta.value;
+            });
+            
+            document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(inp => {
+                // For input fields, we need to set them in a way that will be captured
+                if (inp.type === 'text' || inp.type === 'number' || inp.type === 'date') {
+                    inp.setAttribute('value', inp.value);
+                }
+            });
+
+            const referenceNo = document.getElementById('referenceNo').value;
+            const department = document.getElementById('projectDepartment')?.value || '';
+            const projectName = document.getElementById('projectNameField')?.value || '';
+            const location = document.getElementById('projectLocation')?.value || '';
+            const floorArea = document.getElementById('projectFloorArea')?.value || '';
+            const dateValue = document.getElementById('dateField')?.value || '';
+            
+            const now = new Date();
+            const dateCreated = now.toLocaleString();
+
+            const container = document.querySelector('.container');
+            let printableHTML = container.innerHTML;
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = printableHTML;
+            tempDiv.querySelectorAll('.button-group, .add-row-btn, .remove-row-btn, .delete-section-btn, .add-section-btn, .section-btn-container').forEach(el => {
+                el.remove();
+            });
+            printableHTML = tempDiv.innerHTML;
+
+            const fullHTML = `
+                <style>
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                    html, body { width: 100%; height: 100%; }
+                    body { 
+                        font-family: Arial, sans-serif; 
+                        background-color: white; 
+                        padding: 20px; 
+                        font-size: 11px;
+                        line-height: 1.4;
+                    }
+                    .container { 
+                        max-width: 900px; 
+                        margin: 0 auto; 
+                        background-color: white; 
+                        padding: 20px;
+                    }
+                    input[type="text"], 
+                    input[type="number"], 
+                    input[type="date"],
+                    textarea,
+                    select {
+                        border: none !important;
+                        background: transparent !important;
+                        font-family: Arial, sans-serif;
+                        font-size: 11px;
+                        padding: 2px !important;
+                        margin: 0 !important;
+                    }
+                    input[type="text"]::placeholder,
+                    input[type="number"]::placeholder,
+                    textarea::placeholder {
+                        color: #999;
+                    }
+                    .header-section { 
+                        margin-bottom: 15px; 
+                        border-bottom: 2px solid #000; 
+                        padding-bottom: 10px; 
+                    }
+                    .header-section div { 
+                        margin: 2px 0; 
+                        line-height: 1.3;
+                    }
+                    .header-section strong { 
+                        text-decoration: underline; 
+                    }
+                    table { 
+                        width: 100%; 
+                        border-collapse: collapse; 
+                        margin: 10px 0; 
+                        page-break-inside: avoid;
+                    }
+                    table th { 
+                        background-color: #FFFF00 !important; 
+                        font-weight: bold; 
+                        text-align: center; 
+                        border: 1px solid #000; 
+                        padding: 6px 4px;
+                        font-size: 10px;
+                    }
+                    table td { 
+                        border: 1px solid #000; 
+                        padding: 4px 6px; 
+                        text-align: left;
+                        background-color: white !important;
+                    }
+                    table td input,
+                    table td textarea,
+                    table td select {
+                        width: 100%;
+                        border: none !important;
+                        background: transparent !important;
+                    }
+                    .total-row td { 
+                        background-color: #FFFF00 !important; 
+                        font-weight: bold;
+                    }
+                    .grand-total-row td { 
+                        background-color: #FFFF00 !important; 
+                        font-weight: bold; 
+                        font-size: 11px;
+                    }
+                    .section-header { 
+                        background-color: #f0f0f0; 
+                        font-weight: bold; 
+                        margin-top: 10px; 
+                        padding: 6px; 
+                        border: 1px solid #000;
+                    }
+                    h1, h2 { 
+                        text-align: center; 
+                        margin: 10px 0; 
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+                    h3 { 
+                        font-size: 12px;
+                        margin: 8px 0 4px 0;
+                    }
+                    .perimeter-section { 
+                        margin: 8px 0; 
+                        font-weight: bold; 
+                    }
+                    .signature-section {
+                        margin-top: 20px;
+                    }
+                    .signature-line {
+                        display: inline-block;
+                        width: 200px;
+                        border-bottom: 1px solid #000;
+                        margin: 20px 20px 0 0;
+                        text-align: center;
+                    }
+                    @media print { 
+                        body { margin: 0; padding: 0; }
+                        table td textarea,
+                        table td input {
+                            background: white !important;
+                            border: none !important;
+                            white-space: normal !important;
+                            overflow: visible !important;
+                            word-wrap: break-word !important;
+                            overflow-wrap: break-word !important;
+                        }
+                    }
+                </style>
+
+
+                <div class="document-header">
+                    <div><strong>Department:</strong> ${department || 'N/A'}</div>
+                    <div><strong>Project Name:</strong> ${projectName || 'N/A'}</div>
+                    <div><strong>Location:</strong> ${location || 'N/A'}</div>
+                    <div><strong>Total Floor Area:</strong> ${floorArea || 'N/A'}</div>
+                    <div><strong>Date:</strong> ${dateValue || 'N/A'}</div>
+                </div>
+
+
+
+                ${printableHTML}
+            `;
+
+            const newDocument = {
+                name: documentName.trim(),
+                refNo: referenceNo,
+                department: department,
+                projectName: projectName,
+                location: location,
+                floorArea: floorArea,
+                dateValue: dateValue,
+                date: dateCreated,
+                file: 'bom.html',
+                type: 'BOM INTERNAL',
+                htmlContent: fullHTML
+            };
+
+            let savedDocs = JSON.parse(localStorage.getItem('bomDocuments')) || [];
+            savedDocs.push(newDocument);
+            localStorage.setItem('bomDocuments', JSON.stringify(savedDocs));
+
+            alert('Document "' + documentName + '" has been saved successfully!');
+            window.location.href = 'save_bomboq.html';
+        }
+
 
         // Initialize listeners on page load
         window.addEventListener('DOMContentLoaded', function() {

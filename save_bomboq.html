@@ -71,14 +71,18 @@
         }
 
         .section-title {
-            background-color: #2196F3;
-            color: white;
+            background-color: #FFFF00 !important;
+            color: #000 !important;
             padding: 12px 15px;
             margin-bottom: 15px;
             border-radius: 5px;
-            font-weight: bold;
+            font-weight: bold !important;
             font-size: 14px;
+            opacity: 1 !important;
+            visibility: visible !important;
+            border: 1px solid #000;
         }
+        
 
         table {
             width: 100%;
@@ -469,10 +473,41 @@
             printWindow.document.write('<title>' + doc.name + '</title>');
             printWindow.document.write('<style>');
             printWindow.document.write('body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; background-color: white; }');
-            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background-color: white; }');
-            printWindow.document.write('table th, table td { border: 1px solid #000; padding: 5px 8px; text-align: left; }');
-            printWindow.document.write('table th { background-color: #FFFF00; font-weight: bold; text-align: center; }');
-            printWindow.document.write('.total-row { background-color: #FFFF00; font-weight: bold; }');
+            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background-color: white !important; }');
+            printWindow.document.write('table td { border: 1px solid #000; padding: 6px 8px; text-align: left; vertical-align: top; background-color: white !important; overflow: visible !important; }');
+            printWindow.document.write('table th { background-color: #FFFF00 !important; font-weight: bold; text-align: center; border: 1px solid #000; padding: 6px 4px; font-size: 10px; }');
+            printWindow.document.write('table th:first-child, table td:first-child { width: 45% !important; }');
+            printWindow.document.write('table th:nth-child(2), table td:nth-child(2) { width: 10% !important; text-align: center; }');
+            printWindow.document.write('table th:nth-child(3), table td:nth-child(3) { width: 10% !important; text-align: center; }');
+            printWindow.document.write('table th:nth-child(4), table td:nth-child(4) { width: 17% !important; text-align: right; }');
+            printWindow.document.write('table th:nth-child(5), table td:nth-child(5) { width: 18% !important; text-align: right; font-weight: bold; }');
+            printWindow.document.write('textarea { display: block !important; width: 100% !important; min-height: 25px; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; white-space: pre-wrap !important; overflow: hidden !important; overflow-wrap: break-word !important; word-wrap: break-word !important; line-height: 1.4; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('input[type="text"] { display: inline-block !important; width: 100% !important; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('input[type="number"] { display: inline-block !important; width: 100% !important; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('input[type="date"] { display: inline-block !important; width: 100% !important; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('.total-row { background-color: #FFFF00 !important; font-weight: bold; }');
+            printWindow.document.write('h1 { color: #333; margin-bottom: 10px; font-size: 16px; text-align: center; }');
+            printWindow.document.write('.header-info { background-color: #f9f9f9 !important; padding: 10px; border: 1px solid #ddd; margin-bottom: 20px; }');
+            printWindow.document.write('.doc-title { font-size: 14px; font-weight: bold; }');
+            printWindow.document.write('.doc-ref { font-size: 12px; color: #666; }');
+            printWindow.document.write('.button-group { margin-bottom: 15px; text-align: center; }');
+            printWindow.document.write('.print-button { background-color: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; font-size: 12px; }');
+            printWindow.document.write('.print-button:hover { background-color: #1976D2; }');
+            printWindow.document.write('.close-button { background-color: #666; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }');
+            printWindow.document.write('.close-button:hover { background-color: #555; }');
+            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 30px; font-size: 10px; }');
+            printWindow.document.write('.signature-row { display: contents; }');
+            printWindow.document.write('.signature-block { text-align: center; }');
+            printWindow.document.write('.signature-label { font-weight: bold; margin-bottom: 5px; }');
+            printWindow.document.write('.signature-line { border-top: 1px solid #000; margin-top: 40px; padding-top: 3px; }');
+            printWindow.document.write('.signature-name { font-weight: bold; margin-top: 3px; }');
+            printWindow.document.write('.signature-title { font-size: 9px; margin-top: 2px; }');
+            printWindow.document.write('.bom-section { margin-bottom: 20px; page-break-inside: avoid; background-color: white !important; }');
+            printWindow.document.write('.section-title { background-color: #FFFF00 !important; color: #000 !important; padding: 8px 12px; font-weight: bold !important; font-size: 12px; margin-bottom: 5px; opacity: 1 !important; visibility: visible !important; border: 1px solid #000; }');
+            printWindow.document.write('.text-right { text-align: right; }');
+            printWindow.document.write('.container { background-color: white !important; }');
+            printWindow.document.write('.section-header { background-color: #f0f0f0 !important; font-weight: bold; margin-top: 10px; padding: 6px; border: 1px solid #000; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('@media print { body { margin: 10px; background: white; } .button-group { display: none; } table { page-break-inside: avoid; width: 100%; } tr { page-break-inside: avoid; } td { overflow: visible; background: white !important; } textarea { background: white !important; color: black !important; opacity: 1 !important; } input { background: white !important; color: black !important; opacity: 1 !important; } .section-title { background-color: #2196F3 !important; color: white !important; } }');
             printWindow.document.write('h1 { color: #333; margin-bottom: 10px; font-size: 16px; text-align: center; }');
             printWindow.document.write('.header-info { background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; margin-bottom: 20px; }');
             printWindow.document.write('.doc-title { font-size: 14px; font-weight: bold; }');
@@ -482,15 +517,17 @@
             printWindow.document.write('.print-button:hover { background-color: #1976D2; }');
             printWindow.document.write('.close-button { background-color: #666; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }');
             printWindow.document.write('.close-button:hover { background-color: #555; }');
-            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; font-size: 10px; }');
-            printWindow.document.write('.signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }');
+            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; font-size: 10px; }');
+            printWindow.document.write('.signature-row { display: contents; }');
             printWindow.document.write('.signature-block { text-align: center; }');
             printWindow.document.write('.signature-label { font-weight: bold; margin-bottom: 5px; }');
             printWindow.document.write('.signature-line { border-top: 1px solid #000; margin-top: 40px; padding-top: 3px; }');
-            printWindow.document.write('.signature-name { font-weight: bold; margin-top: 3px; }');
             printWindow.document.write('.signature-title { font-size: 9px; margin-top: 2px; }');
-            printWindow.document.write('input[type="text"], input[type="number"], textarea { border: none; background: transparent; font-family: Arial, sans-serif; font-size: 11px; padding: 2px; margin: 0; }');
-            printWindow.document.write('@media print { .button-group { display: none; } }');
+            printWindow.document.write('.bom-section { margin-bottom: 20px; page-break-inside: avoid; background-color: white !important; }');
+            printWindow.document.write('.section-title { background-color: #FFFF00 !important; color: #000 !important; padding: 8px 12px; font-weight: bold !important; font-size: 12px; margin-bottom: 5px; opacity: 1 !important; visibility: visible !important; border: 1px solid #000; }');
+            printWindow.document.write('.text-right { text-align: right; }');
+            printWindow.document.write('.container { background-color: white !important; }');
+            printWindow.document.write('@media print { body { margin: 10px; background: white; } .button-group { display: none; } table { page-break-inside: avoid; width: 100%; } tr { page-break-inside: avoid; } td { overflow: visible; background: white !important; } textarea { background: white !important; color: black !important; opacity: 1 !important; } input { background: white !important; color: black !important; opacity: 1 !important; } .section-title { background-color: #FFFF00 !important; color: #000 !important; font-weight: bold !important; border: 1px solid #000; } }');
             printWindow.document.write('</style>');
             printWindow.document.write('</head>');
             printWindow.document.write('<body>');
@@ -532,6 +569,46 @@
             printWindow.document.write('</body>');
             printWindow.document.write('</html>');
             printWindow.document.close();
+            
+            // Fix textareas to show their content
+            setTimeout(function() {
+                try {
+                    const textareas = printWindow.document.querySelectorAll('textarea');
+                    textareas.forEach(function(ta) {
+                        // Try to get value from value attribute first, then textContent
+                        const textValue = ta.value || ta.textContent || ta.innerText || '';
+                        if (textValue && textValue.trim()) {
+                            ta.style.display = 'block';
+                            ta.style.color = '#000';
+                            ta.style.background = 'white';
+                            ta.style.overflow = 'visible';
+                            ta.style.whiteSpace = 'pre-wrap';
+                            ta.style.wordWrap = 'break-word';
+                            ta.style.opacity = '1';
+                            ta.style.visibility = 'visible';
+                            // Set both value and textContent to ensure visibility
+                            ta.value = textValue;
+                            ta.textContent = textValue;
+                            ta.innerHTML = textValue;
+                        }
+                    });
+                    
+                    const inputs = printWindow.document.querySelectorAll('input[type="text"], input[type="number"]');
+                    inputs.forEach(function(inp) {
+                        const inputValue = inp.value || inp.getAttribute('value') || '';
+                        if (inputValue && inputValue.trim()) {
+                            inp.style.color = '#000';
+                            inp.style.background = 'white';
+                            inp.style.opacity = '1';
+                            inp.style.visibility = 'visible';
+                            inp.value = inputValue;
+                        }
+                    });
+                } catch(e) {
+                    // Error silently if unable to access print window
+                }
+            }, 100);
+            
             printWindow.focus();
             
             // Automatically trigger print dialog
@@ -551,10 +628,40 @@
             printWindow.document.write('<title>' + doc.name + '</title>');
             printWindow.document.write('<style>');
             printWindow.document.write('body { font-family: Arial, sans-serif; font-size: 11px; margin: 20px; background-color: #f5f5f5; }');
-            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background-color: white; }');
-            printWindow.document.write('table th, table td { border: 1px solid #000; padding: 5px 8px; text-align: left; }');
-            printWindow.document.write('table th { background-color: #FFFF00; font-weight: bold; text-align: center; }');
-            printWindow.document.write('.total-row { background-color: #FFFF00; font-weight: bold; }');
+            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background-color: white !important; }');
+            printWindow.document.write('table td { border: 1px solid #000; padding: 6px 8px; text-align: left; vertical-align: top; background-color: white !important; overflow: visible !important; }');
+            printWindow.document.write('table th { background-color: #FFFF00 !important; font-weight: bold; text-align: center; border: 1px solid #000; padding: 6px 4px; font-size: 10px; }');
+            printWindow.document.write('table th:first-child, table td:first-child { width: 45% !important; }');
+            printWindow.document.write('table th:nth-child(2), table td:nth-child(2) { width: 10% !important; text-align: center; }');
+            printWindow.document.write('table th:nth-child(3), table td:nth-child(3) { width: 10% !important; text-align: center; }');
+            printWindow.document.write('table th:nth-child(4), table td:nth-child(4) { width: 17% !important; text-align: right; }');
+            printWindow.document.write('table th:nth-child(5), table td:nth-child(5) { width: 18% !important; text-align: right; font-weight: bold; }');
+            printWindow.document.write('textarea { display: block !important; width: 100% !important; min-height: 25px; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; white-space: pre-wrap !important; overflow: hidden !important; overflow-wrap: break-word !important; word-wrap: break-word !important; line-height: 1.4; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('input[type="text"] { display: inline-block !important; width: 100% !important; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('input[type="number"] { display: inline-block !important; width: 100% !important; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('input[type="date"] { display: inline-block !important; width: 100% !important; border: none !important; background: white !important; color: black !important; font-family: Arial, sans-serif; font-size: 11px; padding: 2px !important; margin: 0 !important; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('.total-row { background-color: #FFFF00 !important; font-weight: bold; }');
+            printWindow.document.write('h1 { color: #333; margin-bottom: 10px; font-size: 16px; text-align: center; }');
+            printWindow.document.write('.header-info { background-color: #f9f9f9 !important; padding: 10px; border: 1px solid #ddd; margin-bottom: 20px; }');
+            printWindow.document.write('.doc-title { font-size: 14px; font-weight: bold; }');
+            printWindow.document.write('.doc-ref { font-size: 12px; color: #666; }');
+            printWindow.document.write('.print-button { background-color: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; font-size: 12px; }');
+            printWindow.document.write('.print-button:hover { background-color: #1976D2; }');
+            printWindow.document.write('.close-button { background-color: #666; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }');
+            printWindow.document.write('.close-button:hover { background-color: #555; }');
+            printWindow.document.write('.button-group { margin-bottom: 15px; text-align: center; }');
+            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 30px; font-size: 10px; }');
+            printWindow.document.write('.signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }');
+            printWindow.document.write('.signature-block { text-align: center; }');
+            printWindow.document.write('.signature-label { font-weight: bold; margin-bottom: 5px; }');
+            printWindow.document.write('.signature-line { border-top: 1px solid #000; margin-top: 40px; padding-top: 3px; }');
+            printWindow.document.write('.signature-title { font-size: 9px; margin-top: 2px; }');
+            printWindow.document.write('.bom-section { margin-bottom: 20px; page-break-inside: avoid; background-color: white !important; }');
+            printWindow.document.write('.section-title { background-color: #2196F3 !important; color: white !important; padding: 8px 12px; font-weight: bold; font-size: 12px; margin-bottom: 5px; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('.text-right { text-align: right; }');
+            printWindow.document.write('.container { background-color: white !important; }');
+            printWindow.document.write('.section-header { background-color: #f0f0f0 !important; font-weight: bold; margin-top: 10px; padding: 6px; border: 1px solid #000; opacity: 1 !important; visibility: visible !important; }');
+            printWindow.document.write('@media print { body { margin: 10px; background: white; } .button-group { display: none; } table { page-break-inside: avoid; width: 100%; } tr { page-break-inside: avoid; } td { overflow: visible; background: white !important; } textarea { background: white !important; color: black !important; opacity: 1 !important; } input { background: white !important; color: black !important; opacity: 1 !important; } .section-title { background-color: #2196F3 !important; color: white !important; } }');
             printWindow.document.write('h1 { color: #333; margin-bottom: 10px; font-size: 16px; text-align: center; }');
             printWindow.document.write('.header-info { background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; margin-bottom: 20px; }');
             printWindow.document.write('.doc-title { font-size: 14px; font-weight: bold; }');
@@ -564,15 +671,17 @@
             printWindow.document.write('.close-button { background-color: #666; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }');
             printWindow.document.write('.close-button:hover { background-color: #555; }');
             printWindow.document.write('.button-group { margin-bottom: 15px; text-align: center; }');
-            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; font-size: 10px; }');
-            printWindow.document.write('.signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }');
+            printWindow.document.write('.signatures { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; font-size: 10px; }');
+            printWindow.document.write('.signature-row { display: contents; }');
             printWindow.document.write('.signature-block { text-align: center; }');
             printWindow.document.write('.signature-label { font-weight: bold; margin-bottom: 5px; }');
             printWindow.document.write('.signature-line { border-top: 1px solid #000; margin-top: 40px; padding-top: 3px; }');
-            printWindow.document.write('.signature-name { font-weight: bold; margin-top: 3px; }');
             printWindow.document.write('.signature-title { font-size: 9px; margin-top: 2px; }');
-            printWindow.document.write('input[type="text"], input[type="number"], textarea { border: none; background: transparent; font-family: Arial, sans-serif; font-size: 11px; padding: 2px; margin: 0; }');
-            printWindow.document.write('@media print { .button-group { display: none; } }');
+            printWindow.document.write('.bom-section { margin-bottom: 20px; page-break-inside: avoid; background-color: white !important; }');
+            printWindow.document.write('.section-title { background-color: #FFFF00 !important; color: #000 !important; padding: 8px 12px; font-weight: bold !important; font-size: 12px; margin-bottom: 5px; opacity: 1 !important; visibility: visible !important; border: 1px solid #000; }');
+            printWindow.document.write('.text-right { text-align: right; }');
+            printWindow.document.write('.container { background-color: white !important; }');
+            printWindow.document.write('@media print { body { margin: 10px; background: white; } .button-group { display: none; } table { page-break-inside: avoid; width: 100%; } tr { page-break-inside: avoid; } td { overflow: visible; background: white !important; } textarea { background: white !important; color: black !important; opacity: 1 !important; } input { background: white !important; color: black !important; opacity: 1 !important; } .section-title { background-color: #FFFF00 !important; color: #000 !important; font-weight: bold !important; border: 1px solid #000; } }');
             printWindow.document.write('</style>');
             printWindow.document.write('</head>');
             printWindow.document.write('<body>');
@@ -605,6 +714,46 @@
             printWindow.document.write('</body>');
             printWindow.document.write('</html>');
             printWindow.document.close();
+            
+            // Fix textareas to show their content
+            setTimeout(function() {
+                try {
+                    const textareas = printWindow.document.querySelectorAll('textarea');
+                    textareas.forEach(function(ta) {
+                        // Try to get value from value attribute first, then textContent
+                        const textValue = ta.value || ta.textContent || ta.innerText || '';
+                        if (textValue && textValue.trim()) {
+                            ta.style.display = 'block';
+                            ta.style.color = '#000';
+                            ta.style.background = 'white';
+                            ta.style.overflow = 'visible';
+                            ta.style.whiteSpace = 'pre-wrap';
+                            ta.style.wordWrap = 'break-word';
+                            ta.style.opacity = '1';
+                            ta.style.visibility = 'visible';
+                            // Set both value and textContent to ensure visibility
+                            ta.value = textValue;
+                            ta.textContent = textValue;
+                            ta.innerHTML = textValue;
+                        }
+                    });
+                    
+                    const inputs = printWindow.document.querySelectorAll('input[type="text"], input[type="number"]');
+                    inputs.forEach(function(inp) {
+                        const inputValue = inp.value || inp.getAttribute('value') || '';
+                        if (inputValue && inputValue.trim()) {
+                            inp.style.color = '#000';
+                            inp.style.background = 'white';
+                            inp.style.opacity = '1';
+                            inp.style.visibility = 'visible';
+                            inp.value = inputValue;
+                        }
+                    });
+                } catch(e) {
+                    // Error silently if unable to access print window
+                }
+            }, 100);
+            
             printWindow.focus();
         }
 

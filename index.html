@@ -17,6 +17,27 @@
             padding: 20px;
             font-size: 11px;
         }
+         .boq-btn {
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .boq-btn:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
 
         .container {
             max-width: 900px;
@@ -910,6 +931,7 @@
         <div class="button-group">
             <button class="print-btn" onclick="window.print()">Print</button>
             <button class="clear-btn" onclick="clearForm()">Clear Form</button>
+            <button class="boq-btn" onclick="loadPage('bom_labor.html')">CREATE BOQ</button>
         </div>
     </div>
 
@@ -1832,6 +1854,11 @@
             attachCalculationListeners();
             recalculateAllTotals();
         });
+
+        // Function to navigate to another page
+        function loadPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
     </script>
 </body>
 </html>

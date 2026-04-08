@@ -1,0 +1,44 @@
+<?php
+// Database configuration for MySQL
+define('DB_NAME', 'bom_db');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '@L0lly122511'); // Update for production server
+define('DB_HOST', 'localhost');
+
+// Security salt for password hashing
+define('SALT', 'xsqZn4naQBrbvTtNVV5KkAmiSNJnIYsn/GLCLuMNHJTkMkEqU6RYkfQFYvsAthQA
+N6J0ggwRFOiqUKxmHESH7A==');
+
+// Create database connection
+$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+// Check connection
+if ($db->connect_error) {
+    error_log('Database connection failed: ' . $db->connect_error);
+    die('Database connection error. Please contact administrator.');
+}
+
+// Set charset to UTF-8
+$db->set_charset('utf8mb4');
+
+// Helper function to escape strings
+function db_escape($str) {
+    global $db;
+    return $db->real_escape_string($str);
+}
+
+// Helper function for prepared statements
+function db_query($query, $params = [], $types = '') {
+    global $db;
+    $stmt = $db->prepare($query);
+    if (!$stmt) {
+        error_log('SQL Error: ' . $db->error);
+        return false;
+    }
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+    return $stmt;
+}
+?>

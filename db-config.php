@@ -1,8 +1,8 @@
 <?php
 // Database configuration for MySQL
-define('DB_NAME', 'bom_db');
+define('DB_NAME', 'your_db_name');
 define('DB_USER', 'bom_user');
-define('DB_PASSWORD', '@L0lly122511'); // Update for production server
+define('DB_PASSWORD', 'your_password'); // Update for production server
 define('DB_HOST', 'localhost');
 
 // Security salt for password hashing
